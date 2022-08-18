@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigation } from '../navigation';
 
-export default function Home() {
+export const Home=()=> {
   return (
     <>
       <Navigation />

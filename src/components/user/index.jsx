@@ -3,7 +3,7 @@ import routes from '../../utils/routes';
 import CONSTANTS from '../../utils/constants';
 import { Navigation } from '../navigation'
 
-export default function User() {
+export const User=()=> {
   const [user, setUser] = useState();
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);

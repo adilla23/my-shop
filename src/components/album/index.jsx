@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Navigation } from '../navigation';
+import {Navigation} from '../navigation';
 import CONSTANTS from '../../utils/constants';
 import routes from '../../utils/routes';
 
-export default function Album() {
+export const Album=()=> {
   const [albums, setAlbums] = useState([]);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);

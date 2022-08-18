@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Navigation } from '../navigation';
 
-export default function Foto() {
-  const [Fotos, setFotos] = useState();
+export const Foto=()=> {
+  const [fotos, setFotos] = useState([]);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -32,7 +32,7 @@ export default function Foto() {
       <div>
         <Navigation />
         <div>
-          {Fotos.map(({ id, title, url, thumbnailUrl, albumId }) => (
+          {fotos.map(({ id, title, url, thumbnailUrl, albumId }) => (
             <div key={id} className="flex items-start space-x-6 p-6">
               <img
                 src={url}

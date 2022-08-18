@@ -1,4 +1,4 @@
-const ROUTIS = {
+const ROUTES = {
   HOME: '/',
   FOTO: '/photos',
   ALBUM: '/albums',
@@ -6,4 +6,4 @@ const ROUTIS = {
   COMMENT: '/comments',
   POST: '/posts',
 };
-export default Object.freeze(ROUTIS);
+export default Object.freeze(ROUTES);

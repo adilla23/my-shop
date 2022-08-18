@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Disclosure } from '@headlessui/react';
-import { ChatAlt2Icon, ChatIcon, ChevronUpIcon } from '@heroicons/react/solid';
+import { ChatAlt2Icon} from '@heroicons/react/solid';
 
 import routes from '../../utils/routes';
 import CONSTANTS from '../../utils/constants';
 import { Navigation } from '../navigation';
 
-export default function Comment() {
+export const Comment=()=> {
   const [Comment, setComment] = useState();
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -35,7 +35,7 @@ export default function Comment() {
   } else {
     return (
       <>
-       
+        <Navigation />
         <ol>
           {Comment.map(({ id, postId, name, body, email }) => (
             <li key={id} className="m-1 mt-1">
@@ -60,7 +60,7 @@ export default function Comment() {
                         </Disclosure.Panel>
                       </>
                     )}
-                  </Disclosure >
+                  </Disclosure>
                 </div>
               </div>
             </li>

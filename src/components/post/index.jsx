@@ -5,10 +5,10 @@ import { ChatAlt2Icon, ChatIcon, ChevronUpIcon } from '@heroicons/react/solid';
 import routes from '../../utils/routes';
 import CONSTANTS from '../../utils/constants';
 import { Navigation } from '../navigation';
-import Comment from '../comment';
 
-export default function Post() {
-  const [post, setPost] = useState();
+
+export const Post=()=> {
+  const [post, setPost] = useState([]);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
