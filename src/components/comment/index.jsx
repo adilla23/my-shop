@@ -4,30 +4,33 @@ import { ChatAlt2Icon} from '@heroicons/react/solid';
 
 import routes from '../../utils/routes';
 import CONSTANTS from '../../utils/constants';
-import { Navigation } from '../navigation';
 
-export const Comment=()=> {
+export const Comment = (id) => {
   const [Comment, setComment] = useState();
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
+ 
+  
+  const {postId}=id;
 
-  useEffect(() => {
-    fetch(`${CONSTANTS.APP_URL}${routes.COMMENT}`)
-      .then(res => res.status === 200 && res.json())
+  useEffect(() => {   
+    fetch(`${CONSTANTS.APP_URL}${routes.POST}/${postId}${routes.COMMENT}`)
+      .then((res) => res.json())
       .then(
-        result => {
+        (result) => {
           setIsLoaded(true);
+
           setComment(result);
         },
 
-        error => {
+        (error) => {
           setIsLoaded(true);
 
           setError(error);
         }
       );
   }, []);
-
+  
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
@@ -35,17 +38,20 @@ export const Comment=()=> {
   } else {
     return (
       <>
-        <Navigation />
         <ol>
-          {Comment.map(({ id, postId, name, body, email }) => (
+          {Comment.map(({ id, name, postId, body, email }) => (
             <li key={id} className="m-1 mt-1">
               <div className="w-full px-4 pt-2">
                 <div className="mx-auto w-full max-w-md rounded-2xl bg-white p-2">
                   <Disclosure>
                     {({ open }) => (
                       <>
-                        <Disclosure.Button className="flex w-full justify-between rounded-lg bg-gray-100 px-4 py-2 text-left text-sm font-medium text-gray-900 hover:bg-gray-200 focus:outline-none focus-visible:ring focus-visible:ring-gray-500 focus-visible:ring-opacity-75">
+                        <Disclosure.Button
+                          className="flex w-full justify-between rounded-lg bg-gray-100 px-4 py-2 text-left text-sm font-medium text-gray-900 hover:bg-gray-200 focus:outline-none focus-visible:ring focus-visible:ring-gray-500 focus-visible:ring-opacity-75"
+                          
+                        >
                           <span>{email}</span>
+
                           <ChatAlt2Icon
                             className={`${
                               open ? 'mix-blend-color-burn transform' : ''
@@ -69,4 +75,6 @@ export const Comment=()=> {
       </>
     );
   }
-}
+};
+
+

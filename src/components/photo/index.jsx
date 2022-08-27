@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { Navigation } from '../navigation';
+import routes from '../../utils/routes';
+import CONSTANTS from '../../utils/constants';
 
-export const Foto=()=> {
+export const Foto=(id)=> {
   const [fotos, setFotos] = useState([]);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  
+  const {albumId}=id;
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/photos')
-      .then(res => res.status === 200 && res.json())
+    fetch(`${CONSTANTS.APP_URL}${routes.ALBUM}/${albumId}${routes.FOTO}`)
+      .then((res) => res.json())
       .then(
-        result => {
+        (result) => {
           setIsLoaded(true);
           setFotos(result);
         },
 
-        error => {
+        (error) => {
           setIsLoaded(true);
 
           setError(error);
@@ -30,7 +33,7 @@ export const Foto=()=> {
   } else {
     return (
       <div>
-        <Navigation />
+       
         <div>
           {fotos.map(({ id, title, url, thumbnailUrl, albumId }) => (
             <div key={id} className="flex items-start space-x-6 p-6">

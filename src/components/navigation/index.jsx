@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
-
-import { Outlet, Link, useLinkClickHandler,NavLink } from 'react-router-dom';
-
+import React from 'react';
+import { Outlet,NavLink } from 'react-router-dom';
 import ROUTES from '../../utils/routes';
 
 
-export const Navigation = () => {
-  const [active, setActive] = useState(false);
+export const Navigation = () => {  
 
   return (
     <div className="divide-y divide-slate-100">
@@ -36,18 +33,7 @@ export const Navigation = () => {
               Album
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to={ROUTES.FOTO}
-              className={({ isActive }) =>
-                isActive
-                  ? 'block px-3 py-2 rounded-md bg-gray-600 text-white'
-                  : 'block px-3 py-2 rounded-md bg-slate-50'
-              }
-            >
-              Fotos
-            </NavLink>
-          </li>
+          
           <li>
             <NavLink
               to={ROUTES.USER}
@@ -63,26 +49,14 @@ export const Navigation = () => {
           
           <li>
             <NavLink
-              to={ROUTES.COMMENT}
+              to={ROUTES.POST}
               className={({ isActive }) =>
                 isActive
                   ? 'block px-3 py-2 rounded-md bg-gray-600 text-white'
                   : 'block px-3 py-2 rounded-md bg-slate-50'
               }
             >
-              Comentarios
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to={ROUTES.AUTH}
-              className={({ isActive }) =>
-                isActive
-                  ? 'block px-3 py-2 rounded-md bg-gray-600 text-white'
-                  : 'block px-3 py-2 rounded-md bg-slate-50'
-              }
-            >
-              Loguin
+              Post
             </NavLink>
           </li>
         </ul>
