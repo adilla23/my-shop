@@ -3,58 +3,40 @@ import {Navigation} from '../navigation';
 import CONSTANTS from '../../utils/constants';
 import routes from '../../utils/routes';
 import { Foto } from '../photo';
+import { useFetch } from '../../hooks/useFetch';
 
 export const Album=()=> {
-  const [albums, setAlbums] = useState([]);
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
+   const url = `${CONSTANTS.APP_URL}${routes.ALBUM}`; 
+   const { isLoaded, error, comment } = useFetch(url); 
   
-      fetch(`${CONSTANTS.APP_URL}${routes.ALBUM}`)
-        .then(res => res.json())
-        .then(
-          result => {
-            setIsLoaded(true);
-            setAlbums(result);
-          },
-
-          error => {
-            setIsLoaded(true);
-            setError(error);
-          }
-        );
-    
-  }, []);
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  } else if (!isLoaded) {
-    return <div>Loading...</div>;
-  } else {
     return (
+      <>
+        {error && <div>Error: {error.message}</div>}
+        {!error && !isLoaded && <div>Loading...</div>}
+        {!error && isLoaded && (          
       <div>
         <Navigation />
         <ol className="divide-y divide-slate-50">
-          {albums.map(({ id, title }) => (
+          {comment.map(({ id, title }) => (
             <li className="items-start space-x-6 p-6" key={id}>
               <div>
                 <div className="font-semibold text-slate-900 truncate pr-10">
-                Album:{id}
+                  Album:{id}
+                </div>
+                <div className="font-semibold text-slate-500 truncate pr-10">
+                  {title}
+                </div>
               </div>
-              <div className="font-semibold text-slate-500 truncate pr-10">
-                {title}
-              </div>
-              </div>
-              
+
               <div>
                 <Foto albumId={id}></Foto>
               </div>
-              
             </li>
           ))}
         </ol>
       </div>
+        )}
+      </>
     );
-  }
-}
+    }
+    

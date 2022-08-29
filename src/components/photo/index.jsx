@@ -1,41 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import routes from '../../utils/routes';
 import CONSTANTS from '../../utils/constants';
+import { useFetch } from '../../hooks/useFetch';
 
 export const Foto=(id)=> {
-  const [fotos, setFotos] = useState([]);
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
+  
   
   const {albumId}=id;
+  const url = `${CONSTANTS.APP_URL}${routes.ALBUM}/${albumId}${routes.FOTO}`;
+  const { isLoaded, error, comment } = useFetch(url); 
 
-  useEffect(() => {
-    fetch(`${CONSTANTS.APP_URL}${routes.ALBUM}/${albumId}${routes.FOTO}`)
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setFotos(result);
-        },
+  return (
+    <>
+      {error && <div>Error: {error.message}</div>}
+      {!error && !isLoaded && <div>Loading...</div>}
+      {!error && isLoaded && (
 
-        (error) => {
-          setIsLoaded(true);
-
-          setError(error);
-        }
-      );
-  }, []);
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  } else if (!isLoaded) {
-    return <div>Loading...</div>;
-  } else {
-    return (
       <div>
        
         <div>
-          {fotos.map(({ id, title, url, thumbnailUrl, albumId }) => (
+          {comment.map(({ id, title, url, thumbnailUrl, albumId }) => (
             <div key={id} className="flex items-start space-x-6 p-6">
               <img
                 src={url}
@@ -56,6 +40,8 @@ export const Foto=(id)=> {
           ))}
         </div>
       </div>
+      )}
+      </>
     );
   }
-}
+

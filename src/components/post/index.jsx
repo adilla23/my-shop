@@ -6,30 +6,12 @@ import routes from '../../utils/routes';
 import CONSTANTS from '../../utils/constants';
 import { Navigation } from '../navigation';
 import { Comment } from '../comment';
+import { useFetch } from '../../hooks/useFetch';
 
 export const Post=()=> {
-  const [post, setPost] = useState([]);
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  
-    useEffect(() => {
-    fetch(`${CONSTANTS.APP_URL}${routes.POST}`)
-      .then(res => res.json())
-      .then(
-        result => {
-          setIsLoaded(true);
-          setPost(result);
-        },
-
-        error => {
-          setIsLoaded(true);
-
-          setError(error);
-        }
-      );
-  }, []);
-
-  
+   const url = `${CONSTANTS.APP_URL}${routes.POST}`;  
+   const { isLoaded, error, comment } = useFetch(url); 
+    
     return (
       <>
         {error && <div>Error: {error.message}</div>}
@@ -38,7 +20,7 @@ export const Post=()=> {
           <>
             <Navigation />
             <ol>
-              {post.map(({ id, userId, title, body }) => (
+              {comment.map(({ id, userId, title, body }) => (
                 <li key={id} className="m-1 mt-1">
                   <div className="w-full px-4 pt-2">
                     <div className="mx-auto w-full max-w-md rounded-2xl bg-white p-2">
