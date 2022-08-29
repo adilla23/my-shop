@@ -53,7 +53,7 @@ export const Auth=()=> {
     }
   };
 
-  // Generate JSX code for error message
+  // Generate JSX code for error messag
   const renderErrorMessage = (name) =>
     name === errorMessages.name && (
       <div className="error">{errorMessages.message}</div>
