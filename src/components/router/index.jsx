@@ -11,6 +11,7 @@ import ROUTES from '../../utils/routes';
 import Auth from '../../auth/loguin';
 
 
+
 export const Router = () => {
   
   return (
@@ -24,6 +25,7 @@ export const Router = () => {
           <Route path={ROUTES.COMMENT} element={<Comment />} />
           <Route path={ROUTES.USER} element={<User />} />
           <Route path={ROUTES.AUTH} element={<Auth />} />
+
           <Route path="*" element={<Home />} />
         </Routes>
       </BrowserRouter>
