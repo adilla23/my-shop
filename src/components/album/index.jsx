@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+
 import {Navigation} from '../navigation';
 import CONSTANTS from '../../utils/constants';
 import routes from '../../utils/routes';

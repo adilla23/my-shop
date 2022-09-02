@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react';
+
 import routes from '../../utils/routes';
 import CONSTANTS from '../../utils/constants';
 import { Navigation } from '../navigation'
 import { useFetch } from '../../hooks/useFetch';
+
 
 export const User = () => {
   const url = `${CONSTANTS.APP_URL}${routes.USER}`;
@@ -42,7 +44,7 @@ export const User = () => {
                             Dirección
                           </dt>
                           <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                            {'calle ' + address.street + 'apartamento ' + address.suite + ', ' + address.city}
+                            {`calle  ${address.street} apartamento ${address.suite}, ${address.city}`}
                           </dd>
                         </div>
                         <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">

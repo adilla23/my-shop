@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Disclosure } from '@headlessui/react';
 import { ChatAlt2Icon} from '@heroicons/react/solid';
 
@@ -6,7 +6,7 @@ import routes from '../../utils/routes';
 import CONSTANTS from '../../utils/constants';
 import { useFetch } from '../../hooks/useFetch';
 
-export const Comment = (id) => {
+export const Comment =  (id) => {
   const { postId } = id;
   const url = `${CONSTANTS.APP_URL}${routes.POST}/${postId}${routes.COMMENT}`;
   const { isLoaded, error, comment } = useFetch(url);
@@ -51,7 +51,10 @@ export const Comment = (id) => {
         </>
       )}
     </>
-  );
-};
+  )
+}
+
+
+
   
 

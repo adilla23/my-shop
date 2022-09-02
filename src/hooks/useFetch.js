@@ -1,33 +1,27 @@
-
-import React, { useEffect, useState } from 'react'
-
+import { useEffect, useState } from 'react';
 
 export const useFetch = (uri) => {
  const [comment, setComment] = useState();
  const [error, setError] = useState(null);
- const [isLoaded, setIsLoaded] = useState(false);
-
- 
+ const [isLoaded, setIsLoaded] = useState(false); 
 
  useEffect(() => {
    fetch(uri)
      .then((res) => res.json())
      .then(
-       (result) => {
+       (result) => {        
          setIsLoaded(true);
-
          setComment(result);
        },
 
        (error) => {
          setIsLoaded(true);
-
          setError(error);
        }
      );
- }, []);
+ }, [uri]);
 
- return { 'error': error, 'isLoaded': isLoaded, 'comment': comment };
+ return { error, isLoaded, comment };
 }
 
 

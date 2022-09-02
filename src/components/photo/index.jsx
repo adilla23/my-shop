@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+
 import routes from '../../utils/routes';
 import CONSTANTS from '../../utils/constants';
 import { useFetch } from '../../hooks/useFetch';
+
 
 export const Foto=(id)=> {
   
@@ -19,7 +21,7 @@ export const Foto=(id)=> {
       <div>
        
         <div>
-          {comment.map(({ id, title, url, thumbnailUrl, albumId }) => (
+          {comment.map(({ id, title, url, albumId }) => (
             <div key={id} className="flex items-start space-x-6 p-6">
               <img
                 src={url}
