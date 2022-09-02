@@ -22,7 +22,7 @@ export const Auth=()=> {
         setErrorMessages({ name: 'pass', message: ERROR.pass });
       } else {
         setLoggin(true);        
-        navigate(routes.ALBUM);
+        navigate(routes.HOME);
       }
     } else {      
       setErrorMessages({ name: 'email', message: ERROR.email });
