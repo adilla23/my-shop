@@ -1,3 +1,4 @@
+import { Input } from 'postcss';
 import React from 'react';
 
 import { Navigation } from '../navigation';
@@ -7,6 +8,7 @@ return (
     <>
       <Navigation />
       <div>Home</div>
+     
     </>
 );
  
